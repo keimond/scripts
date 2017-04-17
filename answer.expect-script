@@ -1,0 +1,20 @@
+#!/usr/bin/expect -f
+set logfile "log.txt"
+close [open $logfile]         ;# truncate the logfile if it exists
+
+set timeout 20
+set user [lindex $argv 0]
+set password [lindex $argv 1]
+set host [lindex $argv 2]
+set script [lrange $argv 3 end]
+set match_max 1000
+set expect_out(buufer) {}
+
+spawn ssh -q -t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $user@$host "{*}$script"
+
+#spawn ssh -q -t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $user@$host 'bash -s' < $script
+
+expect "?assword:"
+send "test\r"
+#send "${password}\r"
+expect eof

@@ -1,0 +1,16 @@
+#!/bin/bash
+user=root
+
+help() {
+  echo "$0 <script>"
+  echo "This script will use hosts in hostlist.txt"
+  exit 1
+}
+
+if [ -z $1 ]; then help; fi
+
+script=$1
+
+while read host in; do
+  expect answer.expect-script $user $host $script
+done < hostlist.txt

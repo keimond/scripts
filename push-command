@@ -1,0 +1,8 @@
+#!/bin/bash
+user=`whoami`
+if [ -z $1 ]; then echo "$0 [user] [host] [command]"; exit; fi
+if [ -z $2 ]; then echo "$0 [host] [host] [command]"; exit; fi
+test -f log.txt || touch log.txt
+read -s -p 'Enter your password: ' pw
+
+expect answer.expect-script $user $pw $host $2
