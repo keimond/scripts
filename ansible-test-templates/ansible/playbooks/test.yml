@@ -1,0 +1,6 @@
+---
+- name: Create a file from template
+  hosts: localhost
+  tasks:
+    - local_action: template src=../templates/{{ item }}.j2 dest=~/ansible/test/output/{{ item }}.txt
+      with_items: templates

@@ -1,0 +1,11 @@
+---
+ip_server_noction: "123.123.123.123/9995"
+
+noction_hub: TRUE
+
+noction_servers:
+  - "10.10.123.123/2055"
+  - "other/port"
+
+templates:
+  - test1
